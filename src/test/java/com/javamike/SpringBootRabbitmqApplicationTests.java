@@ -101,7 +101,7 @@ public class SpringBootRabbitmqApplicationTests {
     public void send2Topic() {
         Map<String, Object> map = new HashMap<>();
         map.put("msg", "这是一条topic消息");
-        map.put("data", Arrays.asList("topic消息", 123, true));
+        map.put("data", Arrays.asList("Hello World", 123456, true));
 
         //对象被序列化以后发送出去
         rabbitTemplate.convertAndSend("exchange.topic", "direct.test", map);
@@ -113,6 +113,7 @@ public class SpringBootRabbitmqApplicationTests {
      */
     @Test
     public void receive() {
+        //根据队列名称获取消息
         Object o = rabbitTemplate.receiveAndConvert("direct.queue");
         o.getClass();
         System.out.println(o.getClass());
